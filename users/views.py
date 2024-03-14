@@ -36,7 +36,7 @@ class UserDestroyAPIView(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated, IsOwner]
 
 
-class UsersRegistrationView(generics.CreateAPIView):
+class UserRegistrationView(generics.CreateAPIView):
     """ Регистрация нового пользователя """
 
     queryset = User.objects.all()
@@ -44,11 +44,9 @@ class UsersRegistrationView(generics.CreateAPIView):
 
     def post(self, request, *args, **kwargs):
         serializer = UserRegisterSerializer(data=request.data)
-        data = {}
         if serializer.is_valid():
             serializer.save()
-            data['response'] = True
-            return Response(data, status=status.HTTP_200_OK)
+            data = {'response': True}
+            return Response(data, status=status.HTTP_201_CREATED)
         else:
-            data = serializer.errors
-            return Response(data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

@@ -10,13 +10,13 @@ class Habit(models.Model):
     """ Модель привычки """
 
     PERIODICTY_CHOICES = (
-        ('1', 'ежедневно'),
-        ('2', 'раз в два дня'),
-        ('3', 'раз в три дня'),
-        ('4', 'раз в четыре дня'),
-        ('5', 'раз в пять дней'),
-        ('6', 'раз в шесть дней'),
-        ('7', 'раз в семь дней'),
+        (1, 'ежедневно'),
+        (2, 'раз в два дня'),
+        (3, 'раз в три дня'),
+        (4, 'раз в четыре дня'),
+        (5, 'раз в пять дней'),
+        (6, 'раз в шесть дней'),
+        (7, 'раз в семь дней'),
     )
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name='владелец')
@@ -26,7 +26,7 @@ class Habit(models.Model):
     action = models.CharField(max_length=100, verbose_name='действие привычки')
     is_good = models.BooleanField(default=True, verbose_name='признак приятной привычки')
     connected_habit = models.ForeignKey('self', on_delete=models.CASCADE, **NULLABLE, verbose_name='связанная привычка')
-    period = models.CharField(max_length=20, choices=PERIODICTY_CHOICES, default='1',
+    period = models.PositiveSmallIntegerField(choices=PERIODICTY_CHOICES, default='1',
                               verbose_name='периодичность привычки')
     duration = models.DurationField(default=timedelta(minutes=2),
                                     verbose_name='продолжительность выполнения привычки')

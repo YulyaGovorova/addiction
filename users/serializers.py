@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from users.models import User
+from users.validators import UserRegisterValidator
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -18,6 +19,11 @@ class UserRegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['email', 'password', 'password2', 'chat_id']
+
+    def validate(self, data):
+        validator = UserRegisterValidator()
+        validated_data = validator(data)
+        return validated_data
 
     def save(self, *args, **kwargs):
         user = User(
