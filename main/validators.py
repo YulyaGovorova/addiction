@@ -7,28 +7,17 @@ def validator_habit(value):
 
     time = timedelta(minutes=2)
 
-    try:
-        if value['is_good']:
-            if value['connected_habit'] or value['prize']:
-                raise ValidationError('У приятной привычки не может быть связанной привычки или вознаграждения')
-    except KeyError:
-        pass
+    if 'is_good' in value and value['is_good']:
+        if 'connected_habit' in value or 'prize' in value:
+            raise ValidationError('У приятной привычки не может быть связанной привычки или вознаграждения')
 
-    try:
-        if value['connected_habit'] and value['prize']:
-            raise ValidationError('Можно выбрать или приятную привычку или вознаграждение')
-    except KeyError:
-        pass
+    if 'connected_habit' in value and 'prize' in value:
+        raise ValidationError('Можно выбрать или приятную привычку или вознаграждение')
 
-    try:
-        if value['duration'] > time:
-            raise ValidationError('Привычку можно выполнять не более 2 минут')
-    except KeyError:
-        pass
+    duration = value.get('duration')
+    if duration and duration > time:
+        raise ValidationError('Привычку можно выполнять не более 2 минут')
 
-    try:
-        if value['connected_habit']:
-            if not value['connected_habit'].is_good:
-                raise ValidationError('В связанные привычки могут попадать только приятные привычки')
-    except KeyError:
-        pass
+    if 'connected_habit' in value:
+        if not value['connected_habit'].get('is_good'):
+            raise ValidationError('В связанные привычки могут попадать только приятные привычки')

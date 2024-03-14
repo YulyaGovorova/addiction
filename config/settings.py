@@ -177,12 +177,6 @@ CSRF_TRUSTED_ORIGINS = [
 
 CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
 CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')
-# Расписание периодических задач Celery
-CELERY_BEAT_SCHEDULE = {
-    'deactivate-users': {
-        'task': 'users.tasks.check_last_login',
-        'schedule': timedelta(days=1),
-    },
-}
+
 
 TELEGRAM_BOT_API_KEY = os.getenv('TELEGRAM_BOT_API_KEY')

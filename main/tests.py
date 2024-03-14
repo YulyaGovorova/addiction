@@ -43,7 +43,7 @@ class HabitTestCase(InitialTestCase):
             "time": "13:00:00",
             "action": "Тестовое действие_2",
             "is_good": False,
-            "period": '1',
+            "period": 1,
             "duration": '00:01:00',
             "is_public": True,
         }
@@ -91,7 +91,7 @@ class HabitTestCase(InitialTestCase):
                 "time": "12:00:00",
                 "action": "Тестовое действие",
                 "is_good": False,
-                "period": "1",
+                "period": 1,
                 "duration": "00:02:00",
                 "is_public": True,
                 "connected_habit": None,
