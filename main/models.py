@@ -32,6 +32,7 @@ class Habit(models.Model):
                                     verbose_name='продолжительность выполнения привычки')
     is_public = models.BooleanField(default=True, verbose_name='признак публичной привычки')
     prize = models.CharField(max_length=100, verbose_name='награда', **NULLABLE)
+    useful = models.BooleanField(default=False, verbose_name='признак полезная привычка')
 
     def __str__(self):
         return f'Пользователь: {self.user} - привычка: {self.name}'

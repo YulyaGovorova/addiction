@@ -7,6 +7,6 @@ from main.models import Habit
 class HabitAdmin(admin.ModelAdmin):
     """ Привычки в админке """
 
-    list_display = ('name', 'is_public', 'user',)
-    list_filter = ('name',)
+    list_display = ('name', 'is_public', 'user', 'useful')
+    list_filter = ('name', 'useful')
     search_fields = ('name',)
