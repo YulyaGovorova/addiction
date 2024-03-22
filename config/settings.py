@@ -178,8 +178,8 @@ CSRF_TRUSTED_ORIGINS = [
 CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL')
 CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')
 CELERY_BEAT_SCHEDULE = {
-    'send_message_to_bo(habit_id)': {
-        'task': 'main.tasks.send_message_to_bot(habit_id)',
+    'task-name': {
+        'task': 'main.tasks.send_message_to_bot',
         'schedule': timedelta(minutes=1),
     },
 }
