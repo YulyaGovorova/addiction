@@ -11,4 +11,4 @@ class HabitSerializer(serializers.ModelSerializer):
         model = Habit
         fields = '__all__'
 
-        validators = [validator_habit,]
+        validators = [validator_habit]

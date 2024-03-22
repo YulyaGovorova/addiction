@@ -180,8 +180,7 @@ CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND')
 CELERY_BEAT_SCHEDULE = {
     'task-name': {
         'task': 'main.tasks.send_message_to_bot',
-        # 'schedule': timedelta(minutes=1),
-        'schedule': timedelta(seconds=10),
+        'schedule': timedelta(minutes=1),
     },
 }
 
