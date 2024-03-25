@@ -8,12 +8,12 @@ from datetime import datetime
 def send_message_to_bot():
     """ отправляет сообщение в телеграм-бот"""
     print("start")
-    habits = Habit.objects.filter(is_good=False)
+    habits = Habit.objects.filter(is_good=False, time=datetime.utcnow())
     for habit in habits:
         requests.get(
             url=f'https://api.telegram.org/bot{settings.TELEGRAM_BOT_API_KEY}/sendMessage',
             params={
-                'chat_id': habit.user.telegram_id,
+                'chat_id': habit.user.chat_id,
                 'text': f'Привет {habit.user}! Время выполнять {habit.action}. Место выполнения: {habit.place}.'
                         f'Это займет {habit.duration} минут!'
             }
