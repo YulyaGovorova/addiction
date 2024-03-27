@@ -49,3 +49,4 @@ def send_message_to_bot():
                 )
         else:
             print("Ошибка при выполнении запроса:", response['description'])
+
